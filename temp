@@ -1,0 +1,213 @@
+void drawLine(int32_t x1, int32_t y1, int32_t x2, int32_t y2, uint32_t color) {
+	
+	
+	
+	int i,dx,dy,sdx,sdy,dxabs,dyabs,x,y,px,py;
+
+  dx=x2-x1;      // the horizontal distance of the line 
+  dy=y2-y1;      // the vertical distance of the line 
+  dxabs=abs(dx);
+  dyabs=abs(dy);
+  sdx=sgn(dx);
+  sdy=sgn(dy);
+  x=dyabs>>1;
+  y=dxabs>>1;
+  px=x1;
+  py=y1;
+
+  if (dxabs>=dyabs) /* the line is more horizontal than vertical */
+  {
+    for(i=0;i<dxabs;i++)
+    {
+      y+=dyabs;
+      if (y>=dxabs)
+      {
+        y-=dxabs;
+        py+=sdy;
+      }
+      px+=sdx;
+      ST7735_DrawPixel(px,py,color);
+    }
+  }
+  else /* the line is more vertical than horizontal */
+  {
+    for(i=0;i<dyabs;i++)
+    {
+      x+=dxabs;
+      if (x>=dyabs)
+      {
+        x-=dyabs;
+        px+=sdx;
+      }
+      py+=sdy;
+      ST7735_DrawPixel(px,py,color);
+    }
+  }
+	
+	
+	/*
+	int32_t dx = x2-x1; 
+	int32_t dy = y2-y1; 
+	
+	uint32_t abs_dx = abs(dx); 
+	uint32_t abs_dy = abs(dy); 
+	
+	if(abs_dx>abs_dy) {
+		
+	}
+	else {
+	}
+		
+		
+	float m =(float) ((float)dy/dx); 
+	int32_t b = y1-m*x1; 
+	
+	int32_t bufX[100]; 
+	int32_t bufY[100]; 
+	
+	int x = x1; 
+	int i = 0;
+	while (x < x2) {
+		
+		bufX[i] = x;
+		bufY[i] = m*x+b;
+		
+		i++;
+		x++;
+	}
+	
+	
+	
+	for (uint32_t i = 0; i < 100; i++) {
+		int32_t delta_x = (x1 + i*(dx/100));
+		bufX[i] = delta_x; 
+		bufY[i] = (int32_t) (m*delta_x+b); 
+	}
+	
+	
+	ST7735_XYplot(abs_dx,bufX,bufY, ST7735_BLUE); 
+	
+	*/
+}
+
+
+
+void outputTime2(uint32_t hour, uint32_t min) {
+	
+	ST7735_XYplot(180,(int32_t *)CircleXbuf,(int32_t *)CircleYbuf,ST7735_BLUE);
+	
+	switch (hour) {
+		case 0 : 
+			if (moveHandHour) {
+				drawLine(30, 100, 62, 100, ST7735_Color565(228,228,228)); 
+				moveHandHour = 0; 
+			}
+			drawLine(62, 62, 62, 100, ST7735_BLUE); 
+			break; 
+		case 1 : 
+			drawLine(62, 62, 62, 100, ST7735_BLUE);  
+			break; 
+		case 2 : 
+			drawLine(62, 62, 62, 100, ST7735_BLUE); 
+			moveHandHour = 1;
+			break;
+		case 3 : 
+			if (moveHandHour) {
+				drawLine(62, 62, 62, 100, ST7735_Color565(228,228,228)); 
+				moveHandHour = 0; 
+			}
+			drawLine(62, 100, 100, 100, ST7735_BLUE); 
+		  break;
+		case 4 : 
+			drawLine(62, 100, 100, 100, ST7735_BLUE); 
+			break; 
+		case 5 : 
+			drawLine(62, 100, 100, 100, ST7735_BLUE);
+			moveHandHour = 1;
+			break; 
+		case 6 : 
+			if (moveHandHour) {
+				drawLine(62, 100, 100, 100, ST7735_Color565(228,228,228)); 
+				moveHandHour = 0; 
+			}
+			drawLine(62, 100, 62, 130, ST7735_BLUE); 
+			break;
+		case 7 : 
+			drawLine(62, 100, 62, 130, ST7735_BLUE); 
+		  break;
+		case 8 : 
+			drawLine(62, 100, 62, 130, ST7735_BLUE); 
+			moveHandHour = 1;
+			break; 
+		case 9 : 
+			if (moveHandHour) {
+				drawLine(62, 100, 62, 130, ST7735_Color565(228,228,228)); 
+				moveHandHour = 0; 
+			}
+			drawLine(30, 100, 62, 100, ST7735_BLUE); 
+			break; 
+		case 10 :
+			drawLine(30, 100, 62, 100, ST7735_BLUE); 
+			break;
+		case 11 : 
+			drawLine(30, 100, 62, 100, ST7735_BLUE); 
+			moveHandHour = 1;
+		  break;
+	}
+	
+	switch (min/5) {
+		case 0 : 
+			if (moveHandMin) {
+				drawLine(10, 100, 62, 100, ST7735_Color565(228,228,228)); 
+				moveHandMin = 0; 
+			}
+			drawLine(62, 42, 62, 100, ST7735_BLUE); 
+			break; 
+		case 1 : 
+			drawLine(62, 42, 62, 100, ST7735_BLUE);  
+			break; 
+		case 2 : 
+			drawLine(62, 42, 62, 100, ST7735_BLUE); 
+			moveHandMin = 1; 
+			break;
+		case 3 : 
+			if (moveHandMin) {
+				drawLine(62, 42, 62, 100, ST7735_Color565(228,228,228)); 
+				moveHandMin = 0; 
+			}
+			drawLine(62, 100, 115, 100, ST7735_BLUE); 
+		  break;
+		case 4 : 
+			drawLine(62, 100, 115, 100, ST7735_BLUE); 
+			break; 
+		case 5 : 
+			drawLine(62, 100, 115, 100, ST7735_BLUE); 
+			moveHandMin = 1; 
+			break; 
+		case 6 : 
+			if (moveHandMin) {
+				drawLine(62, 100, 115, 100, ST7735_Color565(228,228,228)); 
+				moveHandMin = 0; 
+			}
+			drawLine(62, 100, 62, 150, ST7735_BLUE); 
+			break;
+		case 7 : 
+			drawLine(62, 100, 62, 150, ST7735_BLUE); 
+		  break;
+		case 8 : 
+			drawLine(62, 100, 62, 150, ST7735_BLUE); 
+			moveHandMin = 1; 
+			break; 
+		case 9 : 
+			if (moveHandMin) {
+				drawLine(62, 100, 62, 150, ST7735_Color565(228,228,228)); 
+				moveHandMin = 0; 
+			}
+			drawLine(10, 100, 62, 100, ST7735_BLUE); 
+			break; 
+		case 10 :
+			drawLine(10, 100, 62, 100, ST7735_BLUE); 
+			break;
+		case 11 : 
+			drawLine(10, 100, 62, 100, ST7735_BLUE); 
+			moveHandMin = 1; 
