@@ -211,3 +211,7 @@ void outputTime2(uint32_t hour, uint32_t min) {
 		case 11 : 
 			drawLine(10, 100, 62, 100, ST7735_BLUE); 
 			moveHandMin = 1; 
+			break;
+	}
+	
+}
