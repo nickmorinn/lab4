@@ -1,0 +1,10 @@
+.\timers.o: C:\Users\jmars\Downloads\lab4-master\lab4-master\Lab4\Timers.c
+.\timers.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\timers.o: C:\Users\jmars\Downloads\lab4-master\lab4-master\Lab4\ADCSWTrigger.h
+.\timers.o: C:\Users\jmars\Downloads\lab4-master\lab4-master\Lab4\../inc/tm4c123gh6pm.h
+.\timers.o: C:\Users\jmars\Downloads\lab4-master\lab4-master\Lab4\PLL.h
+.\timers.o: C:\Users\jmars\Downloads\lab4-master\lab4-master\Lab4\ST7735.h
+.\timers.o: C:\Users\jmars\Downloads\lab4-master\lab4-master\Lab4\LCD.h
+.\timers.o: C:\Users\jmars\Downloads\lab4-master\lab4-master\Lab4\Speaker.h
+.\timers.o: C:\Users\jmars\Downloads\lab4-master\lab4-master\Lab4\Buttons.h
+.\timers.o: C:\Users\jmars\Downloads\lab4-master\lab4-master\Lab4\Timers.h
