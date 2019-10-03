@@ -1,0 +1,36 @@
+
+void drawLine(int32_t x1, int32_t y1, int32_t x2, int32_t y2, uint32_t color) {
+  int dx=x2-x1;       
+  int dy=y2-y1;     
+  int absOfdx=abs(dx);
+  int absOfdy=abs(dy);
+  int signOfdx=sgn(dx);
+  int signOfdy=sgn(dy);
+  int x=absOfdy>>1;
+  int y=absOfdx>>1;
+  int xTemp=x1;
+  int yTemp=y1;
+	int i;
+  if (absOfdx>=absOfdy){
+    for(i=0;i<absOfdx;i++) {
+      y+=absOfdy;
+      if (y>=absOfdx) {
+        y=y-absOfdx;
+        yTemp=yTemp+signOfdy;
+      }
+      xTemp=xTemp+signOfdx;
+      ST7735_DrawPixel(xTemp,yTemp,color);
+    }
+  }
+  else {
+    for(i=0;i<absOfdy;i++){
+      x=x+absOfdx;
+      if (x>=absOfdy) {
+        x=x-absOfdy;
+        xTemp+=signOfdx;
+      }
+      yTemp=yTemp+signOfdy;
+      ST7735_DrawPixel(xTemp,yTemp,color);
+    }
+  }
+}
